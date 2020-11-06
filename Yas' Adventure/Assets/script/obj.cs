@@ -21,6 +21,6 @@ public class obj : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        transform.Translate(Vector2.left * Time.deltaTime * obj_speed);
+        //transform.Translate(Vector2.left * Time.deltaTime * obj_speed);
     }
 }
