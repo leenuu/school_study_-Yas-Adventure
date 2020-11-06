@@ -6,7 +6,7 @@ public class obj : MonoBehaviour
 {
     // Start is called before the first frame update
     //public GameObject cam_obj;
-    private float obj_speed = 12.0f;
+    //private float obj_speed = 12.0f;
     private float d_time = 0.0f;
     void Start()
     {
