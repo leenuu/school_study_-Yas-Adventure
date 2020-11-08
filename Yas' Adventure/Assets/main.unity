@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 257293939}
   - component: {fileID: 257293938}
-  - component: {fileID: 257293940}
   m_Layer: 0
   m_Name: _est_back
   m_TagString: Untagged
@@ -200,31 +199,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257293937}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.13, y: 0.02, z: 0}
   m_LocalScale: {x: 8, y: 8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &257293940
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257293937}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 34a59b5f5a8c10647b20785cfffaf620, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &352200126
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireball: {fileID: 1616901975500112713, guid: 816dc33e3bb134a44902b851e908c0ca, type: 3}
   iceball: {fileID: 7159263813857973948, guid: 32be010fb0a6e1b43a4bd111e63a889a, type: 3}
+  posball: {fileID: 3563825198718137476, guid: 0aa124da44871b44f833bf4d1bb01d5d, type: 3}
   pltx: {fileID: 1746462085}
   left_tx: {fileID: 21300000, guid: 64ab233afae2bbe44bb7175b6bece14f, type: 3}
   right_tx: {fileID: 21300000, guid: a094a3bc48e67574bbddc33385838a06, type: 3}
@@ -425,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746462083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.054340452, y: 0.11404722, z: 0}
+  m_LocalPosition: {x: -2.65, y: -0.74, z: 0}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children: []
   m_Father: {fileID: 0}

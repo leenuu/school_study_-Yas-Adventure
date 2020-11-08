@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class player : MonoBehaviour
 {
+    List<string> anim_arr; 
     public GameObject fireball;
     public GameObject iceball;
+    public GameObject posball;
+
     public SpriteRenderer pltx;
 
     public Sprite left_tx;
     public Sprite right_tx;
     public Sprite up_tx;
     public Sprite down_tx;
+
+
     
     //private Vector2 vec_obj = new Vector2(1.0f, 0.0f); 
     private float fire_del = 2.0f;
@@ -23,10 +28,17 @@ public class player : MonoBehaviour
 
     private int test_num = 0;
     private GameObject ball;
+    //private int index = 0;
 
     void Start()
     {
         ball = fireball;
+
+
+        //ani.Play(anim_arr[0]);
+        //ani.wrapMode = WrapMode.Once;
+        
+        
         //Instantiate(obj, transform.position, Quaternion.identity); 
     }
 
@@ -38,6 +50,9 @@ public class player : MonoBehaviour
         test();
     }
 
+
+
+
     void test()
     {
         if(Input.GetKey(KeyCode.F1))
@@ -47,6 +62,10 @@ public class player : MonoBehaviour
         if(Input.GetKey(KeyCode.F2))
         {
             ball = iceball;
+        }
+        if(Input.GetKey(KeyCode.F3))
+        {
+            ball = posball;
         }
     }
 
@@ -146,6 +165,11 @@ public class player : MonoBehaviour
            
             this.yspeed =  -1 * this.speed;
         }
+
+        //if(yspeed==0 && xspeed==0)
+        
+
+
 
         transform.Translate(this.xspeed, this.yspeed, 0);
         this.xspeed *= 0.96f;
