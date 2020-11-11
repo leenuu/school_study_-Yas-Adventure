@@ -2,8 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class player : MonoBehaviour
 {
+    public Animator animator;
+
+
+
+    private void Awake()
+
+    {
+
+        animator = GetComponent<Animator>();
+
+    }
+
     List<string> anim_arr; 
     public GameObject fireball;
     public GameObject iceball;
@@ -83,13 +96,14 @@ public class player : MonoBehaviour
         
 
 
-        if(Input.GetKey(KeyCode.RightArrow))
+        if(Input.GetKeyDown(KeyCode.RightArrow))
         {
             
             //per = Random.Range(1, 101);
             if(fire_del < maxShotDelay)
                 return;
-            pltx.sprite = right_tx;    
+            // pltx.sprite = right_tx; 
+            animator.SetBool("ball_right",true);
             rotation.eulerAngles = new Vector3(0, 0, 90);
             GameObject bullet = Instantiate(ball, transform.position, rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -99,12 +113,22 @@ public class player : MonoBehaviour
             
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow))
+
+        if(Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            
+            animator.SetBool("ball_right",false);
+
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.LeftArrow))
         {
             
             if(fire_del < maxShotDelay)
                 return;
-            pltx.sprite = left_tx;
+            // pltx.sprite = left_tx;
+            animator.SetBool("ball_left",true);
             rotation.eulerAngles = new Vector3(0, 180, 90);
             GameObject bullet = Instantiate(ball, transform.position, rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -113,12 +137,21 @@ public class player : MonoBehaviour
             fire_del = 0;
         }
 
-        if(Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            
+            animator.SetBool("ball_left",false);
+
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
         {
             
             if(fire_del < maxShotDelay)
                 return;
-            pltx.sprite = up_tx;
+            // pltx.sprite = up_tx;
+            animator.SetBool("ball_front",true);
             rotation.eulerAngles = new Vector3(180, 180, 0);
             GameObject bullet = Instantiate(ball, transform.position, rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -127,12 +160,21 @@ public class player : MonoBehaviour
             fire_del = 0;
         }
 
-        if(Input.GetKey(KeyCode.DownArrow))
+        if(Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            
+            animator.SetBool("ball_front",false);
+
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.DownArrow))
         {
             
             if(fire_del < maxShotDelay)
                 return;
-            pltx.sprite = down_tx;
+            // pltx.sprite = down_tx;
+            animator.SetBool("ball_back",true);
             rotation.eulerAngles = new Vector3(0, 180, 0);
             GameObject bullet = Instantiate(ball, transform.position, rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
@@ -140,6 +182,14 @@ public class player : MonoBehaviour
                 
             fire_del = 0;
         }
+
+        if(Input.GetKeyUp(KeyCode.DownArrow))
+        {
+            
+            animator.SetBool("ball_back",false);
+
+        }
+
     }
 
     void move()
@@ -148,22 +198,60 @@ public class player : MonoBehaviour
         {
             
             this.xspeed = this.speed;
+            animator.SetBool("right",true);
             
         }
+
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            
+            animator.SetBool("right", false);
+            
+        }
+
         if (Input.GetKey(KeyCode.A))
         {
             
             this.xspeed = -1 * this.speed;
+            animator.SetBool("left",true);
+
         }
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            
+            animator.SetBool("left", false);
+            
+        }
+
         if (Input.GetKey(KeyCode.W))
         {    
             
             this.yspeed = this.speed;
+            animator.SetBool("front",true);
+
         }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            
+            animator.SetBool("front", false);
+            
+        }
+
         if (Input.GetKey(KeyCode.S))
         {
            
             this.yspeed =  -1 * this.speed;
+            animator.SetBool("back",true);
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.S))
+        {
+            
+            animator.SetBool("back", false);
+            
         }
 
         //if(yspeed==0 && xspeed==0)
