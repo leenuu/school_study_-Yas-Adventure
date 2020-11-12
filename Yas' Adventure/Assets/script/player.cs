@@ -21,6 +21,7 @@ public class player : MonoBehaviour
     public GameObject fireball;
     public GameObject iceball;
     public GameObject posball;
+    public GameObject thball;
 
     public SpriteRenderer pltx;
 
@@ -79,6 +80,10 @@ public class player : MonoBehaviour
         if(Input.GetKey(KeyCode.F3))
         {
             ball = posball;
+        }
+        if(Input.GetKey(KeyCode.F4))
+        {
+            ball = thball;
         }
     }
 

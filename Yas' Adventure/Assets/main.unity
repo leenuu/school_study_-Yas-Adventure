@@ -345,6 +345,7 @@ MonoBehaviour:
   fireball: {fileID: 1616901975500112713, guid: 816dc33e3bb134a44902b851e908c0ca, type: 3}
   iceball: {fileID: 7159263813857973948, guid: 32be010fb0a6e1b43a4bd111e63a889a, type: 3}
   posball: {fileID: 3563825198718137476, guid: 0aa124da44871b44f833bf4d1bb01d5d, type: 3}
+  thball: {fileID: 1613044272810554791, guid: 2cf9facf56a5c254dbcc1bb8dd00859c, type: 3}
   pltx: {fileID: 1746462085}
   left_tx: {fileID: 21300000, guid: 64ab233afae2bbe44bb7175b6bece14f, type: 3}
   right_tx: {fileID: 21300000, guid: a094a3bc48e67574bbddc33385838a06, type: 3}
