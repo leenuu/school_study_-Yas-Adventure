@@ -37,7 +37,7 @@ public class player : MonoBehaviour
     private float xspeed = 0;
     private float yspeed = 0;
     private float maxShotDelay = 0.5f;
-    private float speed = 0.01f;
+    private float speed = 0.02f;
     private float bulletspeed = 10.0f;
 
     private int test_num = 0;
@@ -101,7 +101,7 @@ public class player : MonoBehaviour
         
 
 
-        if(Input.GetKeyDown(KeyCode.RightArrow))
+        if(Input.GetKey(KeyCode.RightArrow))
         {
             
             //per = Random.Range(1, 101);
@@ -127,7 +127,7 @@ public class player : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.LeftArrow))
         {
             
             if(fire_del < maxShotDelay)
@@ -150,7 +150,7 @@ public class player : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.UpArrow))
+        if(Input.GetKey(KeyCode.UpArrow))
         {
             
             if(fire_del < maxShotDelay)
@@ -173,7 +173,7 @@ public class player : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.DownArrow))
+        if(Input.GetKey(KeyCode.DownArrow))
         {
             
             if(fire_del < maxShotDelay)
