@@ -1,4 +1,6 @@
 # school_study_-Yas-Adventure
 
 
-skill effect : moon
+executive and code : leenuu
+img resource : 
+skill effect : Moonshinhyuk
