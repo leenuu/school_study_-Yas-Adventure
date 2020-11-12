@@ -2,5 +2,7 @@
 
 
 executive and code : leenuu
-img resource : 
+
+img resource : ddiong2828
+
 skill effect : Moonshinhyuk
