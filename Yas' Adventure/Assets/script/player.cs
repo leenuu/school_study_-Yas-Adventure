@@ -37,7 +37,7 @@ public class player : MonoBehaviour
     private float xspeed = 0;
     private float yspeed = 0;
     private float maxShotDelay = 0.5f;
-    private float speed = 0.02f;
+    private float speed = 0.007f;
     private float bulletspeed = 10.0f;
 
     private int test_num = 0;
