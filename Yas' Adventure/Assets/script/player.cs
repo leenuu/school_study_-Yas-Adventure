@@ -37,7 +37,7 @@ public class player : MonoBehaviour
     private float xspeed = 0;
     private float yspeed = 0;
     private float maxShotDelay = 0.5f;
-    private float speed = 0.007f;
+    private float speed = 0.014f;
     private float bulletspeed = 10.0f;
 
     private int test_num = 0;
@@ -203,14 +203,14 @@ public class player : MonoBehaviour
         {
             
             this.xspeed = this.speed;
-            animator.SetBool("right",true);
+            animator.SetInteger("direction",4);
             
         }
 
         if (Input.GetKeyUp(KeyCode.D))
         {
             
-            animator.SetBool("right", false);
+            animator.SetInteger("direction",0);
             
         }
 
@@ -218,14 +218,14 @@ public class player : MonoBehaviour
         {
             
             this.xspeed = -1 * this.speed;
-            animator.SetBool("left",true);
+            animator.SetInteger("direction",3);
 
         }
 
         if (Input.GetKeyUp(KeyCode.A))
         {
             
-            animator.SetBool("left", false);
+            animator.SetInteger("direction",0);
             
         }
 
@@ -233,14 +233,14 @@ public class player : MonoBehaviour
         {    
             
             this.yspeed = this.speed;
-            animator.SetBool("front",true);
+            animator.SetInteger("direction",1);
 
         }
 
         if (Input.GetKeyUp(KeyCode.W))
         {
             
-            animator.SetBool("front", false);
+            animator.SetInteger("direction",0);
             
         }
 
@@ -248,14 +248,14 @@ public class player : MonoBehaviour
         {
            
             this.yspeed =  -1 * this.speed;
-            animator.SetBool("back",true);
+            animator.SetInteger("direction",2);
 
         }
 
         if (Input.GetKeyUp(KeyCode.S))
         {
             
-            animator.SetBool("back", false);
+            animator.SetInteger("direction",0);
             
         }
 
