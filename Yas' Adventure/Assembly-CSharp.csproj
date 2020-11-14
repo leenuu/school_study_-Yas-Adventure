@@ -59,6 +59,7 @@
      <Compile Include="Assets\script\player.cs" />
      <Compile Include="Assets\script\AnimatorParameterPractice.cs" />
      <Compile Include="Assets\script\obj.cs" />
+     <Compile Include="Assets\script\fire_poison.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/anstl/OneDrive/바탕 화면/문신혁/school_study_-Yas-Adventure/Yas&apos; Adventure/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
