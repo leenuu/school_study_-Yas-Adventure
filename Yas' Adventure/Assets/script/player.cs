@@ -22,6 +22,7 @@ public class player : MonoBehaviour
     public GameObject iceball;
     public GameObject posball;
     public GameObject thball;
+    public GameObject gas;
 
     public SpriteRenderer pltx;
 
@@ -29,6 +30,7 @@ public class player : MonoBehaviour
     public Sprite right_tx;
     public Sprite up_tx;
     public Sprite down_tx;
+    public float cri = 2.0f;
 
 
     
@@ -43,7 +45,7 @@ public class player : MonoBehaviour
     private int test_num = 0;
     private GameObject ball;
     //private int index = 0;
-
+    private float skill_de = 10.0f;
     void Start()
     {
         ball = fireball;
@@ -92,6 +94,7 @@ public class player : MonoBehaviour
 
 
         fire_del += Time.deltaTime;
+        skill_de += Time.deltaTime;
         // if(fire_del >= 2.0f)
         // {
         //     Instantiate(obj, transform.position, Quaternion.identity); 
@@ -100,7 +103,14 @@ public class player : MonoBehaviour
         Quaternion rotation = Quaternion.identity;
         
 
-
+        if(Input.GetKey(KeyCode.Q))
+        {
+            if(skill_de >= 10.0f)
+            {
+                GameObject gas_ = Instantiate(gas, new Vector2(0, 0), rotation);
+                skill_de = 0.0f;
+            }
+        }
         if(Input.GetKey(KeyCode.RightArrow))
         {
             
