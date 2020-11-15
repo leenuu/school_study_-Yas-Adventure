@@ -104,10 +104,25 @@ public class player : MonoBehaviour
         if(Input.GetKey(KeyCode.RightArrow))
         {
             
-            //per = Random.Range(1, 101);
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                animator.SetBool("ball_front",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.DownArrow))
+            {
+                animator.SetBool("ball_back",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.LeftArrow))
+            {
+                animator.SetBool("ball_left",false);
+                return;
+            }
+            else
+                animator.SetBool("ball_right",true);
             if(fire_del < maxShotDelay)
                 return;
-            // pltx.sprite = right_tx; 
             animator.SetBool("ball_right",true);
             rotation.eulerAngles = new Vector3(0, 0, 90);
             GameObject bullet = Instantiate(ball, transform.position, rotation);
@@ -130,6 +145,23 @@ public class player : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftArrow))
         {
             
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                animator.SetBool("ball_front",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.DownArrow))
+            {
+                animator.SetBool("ball_back",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.RightArrow))
+            {
+                animator.SetBool("ball_right",false);
+                return;
+            }
+            else
+                animator.SetBool("ball_left",true);
             if(fire_del < maxShotDelay)
                 return;
             // pltx.sprite = left_tx;
@@ -153,9 +185,25 @@ public class player : MonoBehaviour
         if(Input.GetKey(KeyCode.UpArrow))
         {
             
+            if(Input.GetKey(KeyCode.DownArrow))
+            {
+                animator.SetBool("ball_back",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.LeftArrow))
+            {
+                animator.SetBool("ball_left",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.RightArrow))
+            {
+                animator.SetBool("ball_right",false);
+                return;
+            }
+            else
+                animator.SetBool("ball_front",true);
             if(fire_del < maxShotDelay)
                 return;
-            // pltx.sprite = up_tx;
             animator.SetBool("ball_front",true);
             rotation.eulerAngles = new Vector3(180, 180, 0);
             GameObject bullet = Instantiate(ball, transform.position, rotation);
@@ -176,9 +224,25 @@ public class player : MonoBehaviour
         if(Input.GetKey(KeyCode.DownArrow))
         {
             
+            if(Input.GetKey(KeyCode.UpArrow))
+            {
+                animator.SetBool("ball_front",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.LeftArrow))
+            {
+                animator.SetBool("ball_left",false);
+                return;
+            }
+            if(Input.GetKey(KeyCode.RightArrow))
+            {
+                animator.SetBool("ball_right",false);
+                return;
+            }
+            else
+                animator.SetBool("ball_back",true);
             if(fire_del < maxShotDelay)
                 return;
-            // pltx.sprite = down_tx;
             animator.SetBool("ball_back",true);
             rotation.eulerAngles = new Vector3(0, 180, 0);
             GameObject bullet = Instantiate(ball, transform.position, rotation);
@@ -273,3 +337,5 @@ public class player : MonoBehaviour
         // GetComponent<Rigidbody2D>().velocity = speed_vec;
     }
 }
+
+
