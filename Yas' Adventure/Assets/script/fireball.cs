@@ -30,5 +30,9 @@ public class fireball : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.tag == "gost")
+        {
+            Destroy(gameObject);
+        }
     }   
 }

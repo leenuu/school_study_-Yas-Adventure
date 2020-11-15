@@ -23,6 +23,7 @@ public class player : MonoBehaviour
     public GameObject posball;
     public GameObject thball;
     public GameObject gas;
+    public GameObject gost;
 
     public SpriteRenderer pltx;
 
@@ -46,6 +47,7 @@ public class player : MonoBehaviour
     private GameObject ball;
     //private int index = 0;
     private float skill_de = 10.0f;
+    private float spawn_de = 1.0f;
     void Start()
     {
         ball = fireball;
@@ -71,6 +73,8 @@ public class player : MonoBehaviour
 
     void test()
     {
+        spawn_de += Time.deltaTime;
+
         if(Input.GetKey(KeyCode.F1))
         {
             ball = fireball;
@@ -87,6 +91,15 @@ public class player : MonoBehaviour
         {
             ball = thball;
         }
+        if(Input.GetKey(KeyCode.F5))
+        {
+            if(spawn_de >= 1.0f)
+            {
+                Quaternion rotation = Quaternion.identity;
+                Instantiate(gost, new Vector2(0, 0), rotation);
+                spawn_de = 0.0f;
+            }
+        }
     }
 
     void fire()
@@ -95,6 +108,7 @@ public class player : MonoBehaviour
 
         fire_del += Time.deltaTime;
         skill_de += Time.deltaTime;
+        
         // if(fire_del >= 2.0f)
         // {
         //     Instantiate(obj, transform.position, Quaternion.identity); 

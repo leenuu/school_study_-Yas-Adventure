@@ -11,6 +11,7 @@ TagManager:
   - test
   - gas
   - ex
+  - gost
   layers:
   - Default
   - TransparentFX
