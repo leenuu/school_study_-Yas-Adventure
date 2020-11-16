@@ -5,13 +5,23 @@ using UnityEngine;
 public class gost : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+    public SpriteRenderer SpriteRenderer;
+
     private float hp = 30.0f;
     private float speed = 3.5f;
     private float cos;
     private float sin;
     private Vector2 playerpos;
     private GameObject player;
+    private float dot_d = 0.0f;
+    private int dot_c = 0;
+    private bool fire_dot = false; 
+    private void Awake()
+
+    {
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+
+    }
     void Start()
     {
            
@@ -24,7 +34,11 @@ public class gost : MonoBehaviour
         // Debug.Log(speed);
         // Debug.Log(speed * Time.deltaTime);
         // Debug.Log(player.GetComponent<player>().cri);
+        if(hp <= 0.0f)
+            Destroy(gameObject);
         move();
+        dot_dam();
+        Debug.Log(hp);
     }
     void move()
     {
@@ -53,9 +67,9 @@ public class gost : MonoBehaviour
         {  
             Debug.Log("tag");    
             hp = hp - 10.0f * player.GetComponent<player>().cri;
-            Debug.Log(hp);
-            if(hp <= 0.0f)
-                Destroy(gameObject);
+            
+            fire_dot = true;
+            
         }
 
         if(collision.gameObject.tag == "pl")
@@ -74,6 +88,47 @@ public class gost : MonoBehaviour
             back.y = sin_;
             
             player.transform.Translate(playerpos.x * back_v * Time.deltaTime, playerpos.y * back_v * Time.deltaTime, 0);
+        }
+
+    }
+
+    void dot_dam()
+    {
+        if(fire_dot == false)
+            return;
+        
+        dot_d += Time.deltaTime;
+        if(dot_c == 5)
+        {
+            fire_dot = false;
+            dot_c = 0;
+            dot_d = 0.0f;
+            return;
+        }
+        if(dot_d >= 1.0f)
+        {
+            hp -= 0.8f;
+            dot_c ++;
+            dot_d = 0.0f;
+            StartCoroutine("hit");  
+        }
+        
+
+    }
+
+    private IEnumerator hit()
+    {
+        int countTime = 0;
+
+        while (countTime < 2){
+            if(countTime%2 == 0)
+                SpriteRenderer.color = new Color32(255,90,90,255);
+            else
+                SpriteRenderer.color = new Color32(255,255,255,255);
+
+            yield return new WaitForSeconds(0.25f);
+
+            countTime++;
         }
 
     }

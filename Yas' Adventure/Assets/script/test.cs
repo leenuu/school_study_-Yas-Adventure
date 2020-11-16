@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    public GameObject obj;
     
     //private Vector2 vec_obj = new Vector2(1.0f, 0.0f); 
-    private float fire_del = 2.0f;
+    private float hp = 14.0f;
+    private float dot_d = 0.0f;
+    private int dot_c = 0;
+    private bool fire_dot = false; 
+
 
     void Start()
     {
@@ -17,16 +20,43 @@ public class test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        fire();
+        Debug.Log(hp);
+        dot_dam();
+        if(hp <= 0.01f)
+            Destroy(gameObject);
+
     }
 
-    void fire()
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        fire_del += Time.deltaTime;
-        if(fire_del >= 2.0f)
+        if(collision.gameObject.tag == "fire")
         {
-            Instantiate(obj, transform.position, Quaternion.identity); 
-            fire_del = 0;
+            hp -= 10.0f * GameObject.FindGameObjectWithTag("pl").GetComponent<player>().cri;
+            fire_dot = true;
         }
     }
+
+    void dot_dam()
+    {
+        if(fire_dot == false)
+            return;
+        
+        dot_d += Time.deltaTime;
+        if(dot_c == 5)
+        {
+            fire_dot = false;
+            dot_c = 0;
+            dot_d = 0.0f;
+            return;
+        }
+        if(dot_d >= 1.0f)
+        {
+            hp -= 0.8f;
+            dot_c ++;
+            dot_d = 0.0f;
+        }
+        
+
+    }
+
 }

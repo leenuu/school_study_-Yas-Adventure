@@ -14,9 +14,7 @@ public class player : MonoBehaviour
     public GameObject thball;
     public GameObject gas;
     public GameObject gost;
-
     public SpriteRenderer pltx;
-
     public Sprite left_tx;
     public Sprite right_tx;
     public Sprite up_tx;
@@ -102,7 +100,7 @@ public class player : MonoBehaviour
         }
     }
 
-    public IEnumerator hit()
+    private IEnumerator hit()
     {
         int countTime = 0;
 
