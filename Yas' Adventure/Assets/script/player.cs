@@ -6,17 +6,7 @@ using UnityEngine;
 public class player : MonoBehaviour
 {
     public Animator animator;
-
-
-
-    private void Awake()
-
-    {
-
-        animator = GetComponent<Animator>();
-
-    }
-
+    public SpriteRenderer SpriteRenderer;
     List<string> anim_arr; 
     public GameObject fireball;
     public GameObject iceball;
@@ -40,14 +30,23 @@ public class player : MonoBehaviour
     private float xspeed = 0;
     private float yspeed = 0;
     private float maxShotDelay = 0.5f;
-    private float speed = 2.0f;
+    private float speed = 4.0f;
     private float bulletspeed = 10.0f;
-
+    private float hp = 5.0f;
     private int test_num = 0;
     private GameObject ball;
     //private int index = 0;
     private float skill_de = 10.0f;
     private float spawn_de = 1.0f;
+
+    private void Awake()
+
+    {
+        SpriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+
+    }
+
     void Start()
     {
         ball = fireball;
@@ -66,6 +65,7 @@ public class player : MonoBehaviour
         fire();
         move();
         test();
+        
     }
 
 
@@ -102,6 +102,23 @@ public class player : MonoBehaviour
         }
     }
 
+    public IEnumerator hit()
+    {
+        int countTime = 0;
+
+        while (countTime < 9){
+            if(countTime%2 == 0)
+                SpriteRenderer.color = new Color32(255,255,255,90);
+            else
+                SpriteRenderer.color = new Color32(255,255,255,180);
+
+            yield return new WaitForSeconds(0.1f);
+
+            countTime++;
+        }
+
+        SpriteRenderer.color = new Color32(255,255,255,255);
+    }
     void fire()
     {
 
@@ -353,13 +370,21 @@ public class player : MonoBehaviour
 
 
 
-        transform.Translate(this.xspeed * speed * Time.deltaTime, this.yspeed * speed * Time.deltaTime, 0);
+        transform.Translate(this.xspeed * Time.deltaTime, this.yspeed * Time.deltaTime, 0);
         this.xspeed *= 0.96f;
         this.yspeed *= 0.96f;
         // speed_vec.x = Input.GetAxis("Horizontal") * this.speed;
         // speed_vec.y = Input.GetAxis("Vertical") * this.speed;
 
         // GetComponent<Rigidbody2D>().velocity = speed_vec;
+    }
+    void OnCollisionEnter2D(Collision2D Collision)
+    {
+        if(Collision.gameObject.tag == "gost")
+        {
+            StartCoroutine("hit");  
+            hp -= 1.0f;
+        }  
     }
 }
 
