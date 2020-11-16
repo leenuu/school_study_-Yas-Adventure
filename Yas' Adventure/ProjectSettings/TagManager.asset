@@ -12,6 +12,7 @@ TagManager:
   - gas
   - ex
   - gost
+  - wall
   layers:
   - Default
   - TransparentFX
