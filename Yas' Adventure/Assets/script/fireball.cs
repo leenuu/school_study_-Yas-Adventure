@@ -20,7 +20,8 @@ public class fireball : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "test")
         {
@@ -33,6 +34,8 @@ public class fireball : MonoBehaviour
         if (collision.gameObject.tag == "gost")
         {
             Destroy(gameObject);
-        }
-    }   
+        }        
+    }
 }
+
+

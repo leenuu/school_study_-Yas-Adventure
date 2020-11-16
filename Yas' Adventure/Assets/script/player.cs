@@ -31,7 +31,7 @@ public class player : MonoBehaviour
     public Sprite right_tx;
     public Sprite up_tx;
     public Sprite down_tx;
-    public float cri = 2.0f;
+    public float cri = 1.0f;
 
 
     
@@ -40,7 +40,7 @@ public class player : MonoBehaviour
     private float xspeed = 0;
     private float yspeed = 0;
     private float maxShotDelay = 0.5f;
-    private float speed = 0.006f;
+    private float speed = 2.0f;
     private float bulletspeed = 10.0f;
 
     private int test_num = 0;
@@ -287,6 +287,7 @@ public class player : MonoBehaviour
 
     void move()
     {
+        // Debug.Log(speed * Time.deltaTime);
         if (Input.GetKey(KeyCode.D))
         {
             
@@ -352,7 +353,7 @@ public class player : MonoBehaviour
 
 
 
-        transform.Translate(this.xspeed, this.yspeed, 0);
+        transform.Translate(this.xspeed * speed * Time.deltaTime, this.yspeed * speed * Time.deltaTime, 0);
         this.xspeed *= 0.96f;
         this.yspeed *= 0.96f;
         // speed_vec.x = Input.GetAxis("Horizontal") * this.speed;
