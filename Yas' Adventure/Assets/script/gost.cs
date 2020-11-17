@@ -7,7 +7,7 @@ public class gost : MonoBehaviour
     // Start is called before the first frame update
     public SpriteRenderer SpriteRenderer;
 
-    private float hp = 14.0f;
+    private float hp = 30.0f;
     private float speed = 3.5f;
     private float cos;
     private float sin;
@@ -41,7 +41,21 @@ public class gost : MonoBehaviour
         move();
         dot_dam();
         Debug.Log(po_st);
-        Debug.Log(hp);
+        po_d += Time.deltaTime;
+        if(po_st == 5 && po_d >= 3.0f)
+        {
+            po_d = 0.0f;
+            po_st--;    
+            Debug.Log("st--"); 
+        }
+        else if(po_d >= 0.9f && po_st >= 1 && po_st <= 4)
+        {
+            po_d = 0.0f;
+            po_st--;    
+            Debug.Log("st--");      
+        }
+        
+    // Debug.Log(hp);
     }
     void move()
     {
@@ -72,50 +86,44 @@ public class gost : MonoBehaviour
             if(po_st == 0)
                 hp = hp - 10.0f * player.GetComponent<player>().cri;
             else
-                hp = hp - 10.0f * player.GetComponent<player>().cri * 0.08f * po_st;
+                 hp = hp - 10.0f * player.GetComponent<player>().cri * (1 + 0.04f * po_st);
             
             fire_dot = true;
             
+            float back_v = 5.0f;
+            transform.Translate(-transform.position.x * back_v * Time.deltaTime , -transform.position.y * back_v * Time.deltaTime , 0);
+                               
         }
 
         if(collision.gameObject.tag == "pl")
         {
-            Debug.Log("tag");  
-            Vector2 back;
+            Debug.Log("tag");
 
             player = GameObject.FindGameObjectWithTag("pl");
-            back.x = player.transform.position.x - transform.position.x;
-            back.y = player.transform.position.y - transform.position.y;
-
-            float cos_ =  Mathf.Cos(Mathf.Atan2(back.y, back.x));
-            float sin_ =  Mathf.Sin(Mathf.Atan2(back.y, back.x));
             float back_v = 35.0f;
-            back.x = cos_;
-            back.y = sin_;
-            
             player.transform.Translate(playerpos.x * back_v * Time.deltaTime - player.GetComponent<player>().back_x, playerpos.y * back_v * Time.deltaTime - player.GetComponent<player>().back_y, 0);
         }
 
         if(collision.gameObject.tag == "pos")
         {   
     
-            po_d += Time.deltaTime;
-
-            
             if(po_st == 0)
                 hp = hp - 10.0f * player.GetComponent<player>().cri;
             else
-                hp = hp - 10.0f * player.GetComponent<player>().cri * (1 + 0.08f * po_st);
+                hp = hp - 10.0f * player.GetComponent<player>().cri * (1 + 0.04f * po_st);
             if(po_st < 5)
-                po_st ++;
-
-            if(po_d >= 0.9f && po_st >= 1)
-            {
-                po_d = 0.0f;
-                po_st--;        
-            }
-            
+                po_st ++;  
+            else if(po_st == 5)
+                po_st = 5; 
+                
+            float back_v = 5.0f;
+            transform.Translate(-transform.position.x * back_v * Time.deltaTime , -transform.position.y * back_v * Time.deltaTime , 0);
         }
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+
     }
 
     void dot_dam()
@@ -131,18 +139,21 @@ public class gost : MonoBehaviour
             dot_d = 0.0f;
             return;
         }
-        if(dot_d >= 1.0f)
+        if(dot_d >= 0.94f)
         {
-            hp -= 0.8f;
+            if(po_st == 5)
+                hp -= 0.6f;
+            else
+                hp -= 0.4f;
             dot_c ++;
             dot_d = 0.0f;
-            StartCoroutine("hit");  
+            StartCoroutine("hit_f");  
         }
         
 
     }
 
-    private IEnumerator hit()
+    private IEnumerator hit_f()
     {
         int countTime = 0;
 
@@ -152,11 +163,29 @@ public class gost : MonoBehaviour
             else
                 SpriteRenderer.color = new Color32(255,255,255,255);
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.15f);
 
             countTime++;
         }
 
+    }
+
+    private IEnumerator hited()
+    {
+        int countTime = 0;
+
+        while (countTime < 9){
+            if(countTime%2 == 0)
+                SpriteRenderer.color = new Color32(255,255,255,90);
+            else
+                SpriteRenderer.color = new Color32(255,255,255,180);
+
+            yield return new WaitForSeconds(0.1f);
+
+            countTime++;
+        }
+
+        SpriteRenderer.color = new Color32(255,255,255,255);
     }
 
  }
