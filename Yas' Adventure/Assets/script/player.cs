@@ -19,6 +19,7 @@ public class player : MonoBehaviour
     public Sprite right_tx;
     public Sprite up_tx;
     public Sprite down_tx;
+    public GameObject tell;
     public float cri = 1.0f;
     public float back_x = 0.0f;
     public float back_y = 0.0f;
@@ -37,6 +38,8 @@ public class player : MonoBehaviour
     private float skill_de = 10.0f;
     private float spawn_de = 1.0f;
     private GameObject cam;
+    private float tp_s = 2.0f;
+    private float tp_d = 3.0f;
     private void Awake()
 
     {
@@ -63,6 +66,7 @@ public class player : MonoBehaviour
     void Update()
     {
         fire();
+        // tp();
         move();
         test();
         
@@ -402,6 +406,63 @@ public class player : MonoBehaviour
 
         // GetComponent<Rigidbody2D>().velocity = speed_vec;
     }
+    // void tp()
+    // {
+    //     tp_d += Time.deltaTime;
+    //     Debug.Log(tp_d);
+    //     if(tp_d <= 3.0f)
+    //         return;
+    //     if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.A))
+    //     {
+    //         transform.Translate(transform.position.x - tp_s, transform.position.y, 0);
+    //         tp_d = 0.0f;
+    //     }
+    //     else if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.W))
+    //     {
+    //         Debug.Log(transform.position);
+    //         transform.Translate(transform.position.x, transform.position.y + tp_s, 0);
+    //         Debug.Log(transform.position);
+    //         tp_d = 0.0f;
+    //     }
+    //     else if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.D))
+    //     {
+    //         transform.Translate(transform.position.x + tp_s, transform.position.y, 0);
+    //         tp_d = 0.0f;
+    //     }
+    //     else if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.S))
+    //     {
+    //         transform.Translate(transform.position.x, transform.position.y - tp_s, 0);
+    //         tp_d = 0.0f;
+    //     }
+
+
+
+    //     else if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
+    //     {
+    //         transform.Translate(transform.position.x - tp_s / Mathf.Sqrt(2), transform.position.y + tp_s / Mathf.Sqrt(2), 0);
+    //         tp_d = 0.0f;
+    //     }
+
+    //     else if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+    //     {
+    //         transform.Translate(transform.position.x + tp_s / Mathf.Sqrt(2), transform.position.y + tp_s / Mathf.Sqrt(2), 0);
+    //         tp_d = 0.0f;
+    //     }
+
+    //     else if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+    //     {
+    //         transform.Translate(transform.position.x + tp_s / Mathf.Sqrt(2), transform.position.y - tp_s / Mathf.Sqrt(2), 0);
+    //         tp_d = 0.0f;
+    //     }
+
+    //     else if(Input.GetKey(KeyCode.E) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+    //     {
+    //         transform.Translate(transform.position.x - tp_s / Mathf.Sqrt(2), transform.position.y - tp_s / Mathf.Sqrt(2), 0);
+    //         tp_d = 0.0f;
+    //     }
+
+        
+    // }
     void OnCollisionEnter2D(Collision2D Collision)
     {
         if(Collision.gameObject.tag == "gost")
