@@ -7,7 +7,7 @@ public class gost : MonoBehaviour
     // Start is called before the first frame update
     public SpriteRenderer SpriteRenderer;
 
-    private float hp = 30.0f;
+    private float hp = 14.0f;
     private float speed = 3.5f;
     private float cos;
     private float sin;
@@ -16,6 +16,8 @@ public class gost : MonoBehaviour
     private float dot_d = 0.0f;
     private int dot_c = 0;
     private bool fire_dot = false; 
+    private int po_st = 0;
+    private float po_d = 0.0f;
     private void Awake()
 
     {
@@ -34,10 +36,11 @@ public class gost : MonoBehaviour
         // Debug.Log(speed);
         // Debug.Log(speed * Time.deltaTime);
         // Debug.Log(player.GetComponent<player>().cri);
-        if(hp <= 0.0f)
+        if(hp <= 0.01f)
             Destroy(gameObject);
         move();
         dot_dam();
+        Debug.Log(po_st);
         Debug.Log(hp);
     }
     void move()
@@ -66,7 +69,10 @@ public class gost : MonoBehaviour
         if(collision.gameObject.tag == "fire")
         {  
             Debug.Log("tag");    
-            hp = hp - 10.0f * player.GetComponent<player>().cri;
+            if(po_st == 0)
+                hp = hp - 10.0f * player.GetComponent<player>().cri;
+            else
+                hp = hp - 10.0f * player.GetComponent<player>().cri * 0.08f * po_st;
             
             fire_dot = true;
             
@@ -87,9 +93,29 @@ public class gost : MonoBehaviour
             back.x = cos_;
             back.y = sin_;
             
-            player.transform.Translate(playerpos.x * back_v * Time.deltaTime, playerpos.y * back_v * Time.deltaTime, 0);
+            player.transform.Translate(playerpos.x * back_v * Time.deltaTime - player.GetComponent<player>().back_x, playerpos.y * back_v * Time.deltaTime - player.GetComponent<player>().back_y, 0);
         }
 
+        if(collision.gameObject.tag == "pos")
+        {   
+    
+            po_d += Time.deltaTime;
+
+            
+            if(po_st == 0)
+                hp = hp - 10.0f * player.GetComponent<player>().cri;
+            else
+                hp = hp - 10.0f * player.GetComponent<player>().cri * (1 + 0.08f * po_st);
+            if(po_st < 5)
+                po_st ++;
+
+            if(po_d >= 0.9f && po_st >= 1)
+            {
+                po_d = 0.0f;
+                po_st--;        
+            }
+            
+        }
     }
 
     void dot_dam()

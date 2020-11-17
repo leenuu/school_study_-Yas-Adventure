@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 352200127}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: cam1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -304,8 +304,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661637137}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0052, y: 0.0011, z: 0}
-  m_LocalScale: {x: 1.1659015, y: 0.8413162, z: 1}
+  m_LocalPosition: {x: 0.02, y: 0.0011, z: 0}
+  m_LocalScale: {x: 1.1749985, y: 0.8413162, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -403,7 +403,7 @@ MonoBehaviour:
   SpriteRenderer: {fileID: 0}
   fireball: {fileID: 9167851958741443142, guid: 816dc33e3bb134a44902b851e908c0ca, type: 3}
   iceball: {fileID: 7159263813857973948, guid: 32be010fb0a6e1b43a4bd111e63a889a, type: 3}
-  posball: {fileID: 3563825198718137476, guid: 0aa124da44871b44f833bf4d1bb01d5d, type: 3}
+  posball: {fileID: 5015791975236603599, guid: ea9291fd4c9c1c544aa82b20798b9811, type: 3}
   thball: {fileID: 1613044272810554791, guid: 2cf9facf56a5c254dbcc1bb8dd00859c, type: 3}
   gas: {fileID: 7585783247314490142, guid: 6d26f51a25e3eb7429c625d7b7e5c07e, type: 3}
   gost: {fileID: 2839154054069701638, guid: a06301de589dbcd48b98276252fa6271, type: 3}
@@ -413,6 +413,8 @@ MonoBehaviour:
   up_tx: {fileID: 21300000, guid: ae994f40c64dfb54e9c92351d082098b, type: 3}
   down_tx: {fileID: 21300000, guid: 251102ce227e68e4caa1281aa9e99ba0, type: 3}
   cri: 1
+  back_x: 0
+  back_y: 0
 --- !u!212 &1746462085
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -472,7 +474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1746462083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.56, y: -0.05, z: 0}
+  m_LocalPosition: {x: -3.78, y: 0.03, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -615,7 +617,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b70d66bd93fc8c64e9ff54699f3bdaf9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.5849056, g: 0.5849056, b: 0.5849056, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

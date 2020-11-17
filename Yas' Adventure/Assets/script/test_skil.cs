@@ -24,12 +24,12 @@ public class test_skil : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "fire")
         {
             Destroy(gameObject);
             GameObject exp = Instantiate(ex, transform.position, Quaternion.identity);
-        }
+        }    
     }
 }

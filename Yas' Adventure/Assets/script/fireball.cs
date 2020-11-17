@@ -15,7 +15,7 @@ public class fireball : MonoBehaviour
     void Update()
     {
         d_time += Time.deltaTime;
-        if(d_time >= 0.8f)
+        if(d_time >= 0.6f)
         {
             Destroy(gameObject);
         }
@@ -24,17 +24,14 @@ public class fireball : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "test")
-        {
             Destroy(gameObject);
-        }
-        if (collision.gameObject.tag == "gas")
-        {
+        if (collision.gameObject.tag == "ex")
             Destroy(gameObject);
-        }
         if (collision.gameObject.tag == "gost")
-        {
             Destroy(gameObject);
-        }        
+        if(collision.gameObject.tag == "wall")
+            Destroy(gameObject);               
+         
     }
 }
 

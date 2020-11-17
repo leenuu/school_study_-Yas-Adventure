@@ -20,8 +20,8 @@ public class player : MonoBehaviour
     public Sprite up_tx;
     public Sprite down_tx;
     public float cri = 1.0f;
-
-
+    public float back_x = 0.0f;
+    public float back_y = 0.0f;
     
     //private Vector2 vec_obj = new Vector2(1.0f, 0.0f); 
     private float fire_del = 2.0f;
@@ -36,7 +36,7 @@ public class player : MonoBehaviour
     //private int index = 0;
     private float skill_de = 10.0f;
     private float spawn_de = 1.0f;
-
+    private GameObject cam;
     private void Awake()
 
     {
@@ -48,7 +48,9 @@ public class player : MonoBehaviour
     void Start()
     {
         ball = fireball;
-
+        cam = GameObject.FindGameObjectWithTag("cam1");
+        
+        // Debug.Log(cam.transform.position);  
 
         //ani.Play(anim_arr[0]);
         //ani.wrapMode = WrapMode.Once;
@@ -66,8 +68,30 @@ public class player : MonoBehaviour
         
     }
 
+    void ts_cam()
+    {
+        if(Mathf.Abs(transform.position.x) >= 5.63f)
+        {
+            back_x = -5.63f + Mathf.Abs(transform.position.x);
+            if(transform.position.x < 0)
+                back_x = -back_x;
+        }
+        else
+            back_x = 0.0f;
 
+        if(Mathf.Abs(transform.position.y) >= 1.52f)
+        {
+            back_y = -1.52f + Mathf.Abs(transform.position.y);
+            if(transform.position.y < 0)
+                back_y = -back_y;
+        }
+        else
+            back_y = 0.0f;
+        
+        // Debug.Log(back_x);
+        // Debug.Log(back_y);
 
+    }
 
     void test()
     {
@@ -117,6 +141,7 @@ public class player : MonoBehaviour
 
         SpriteRenderer.color = new Color32(255,255,255,255);
     }
+
     void fire()
     {
 
@@ -136,7 +161,7 @@ public class player : MonoBehaviour
         {
             if(skill_de >= 10.0f)
             {
-                GameObject gas_ = Instantiate(gas, new Vector2(0, 0), rotation);
+                GameObject gas_ = Instantiate(gas, new Vector3(0, 0, 5), rotation);
                 skill_de = 0.0f;
             }
         }
@@ -164,7 +189,7 @@ public class player : MonoBehaviour
                 return;
             animator.SetBool("ball_right",true);
             rotation.eulerAngles = new Vector3(0, 0, 90);
-            GameObject bullet = Instantiate(ball, transform.position, rotation);
+            GameObject bullet = Instantiate(ball,new Vector2(transform.position.x + 0.5f, transform.position.y), rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             rigid.AddForce(Vector2.right * bulletspeed, ForceMode2D.Impulse);
                 
@@ -206,7 +231,7 @@ public class player : MonoBehaviour
             // pltx.sprite = left_tx;
             animator.SetBool("ball_left",true);
             rotation.eulerAngles = new Vector3(0, 180, 90);
-            GameObject bullet = Instantiate(ball, transform.position, rotation);
+            GameObject bullet = Instantiate(ball, new Vector2(transform.position.x - 0.5f, transform.position.y), rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             rigid.AddForce(Vector2.left * bulletspeed, ForceMode2D.Impulse);
                 
@@ -245,7 +270,7 @@ public class player : MonoBehaviour
                 return;
             animator.SetBool("ball_front",true);
             rotation.eulerAngles = new Vector3(180, 180, 0);
-            GameObject bullet = Instantiate(ball, transform.position, rotation);
+            GameObject bullet = Instantiate(ball, new Vector2(transform.position.x, transform.position.y + 0.5f), rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             rigid.AddForce(Vector2.up * bulletspeed, ForceMode2D.Impulse);
                 
@@ -284,7 +309,7 @@ public class player : MonoBehaviour
                 return;
             animator.SetBool("ball_back",true);
             rotation.eulerAngles = new Vector3(0, 180, 0);
-            GameObject bullet = Instantiate(ball, transform.position, rotation);
+            GameObject bullet = Instantiate(ball, new Vector2(transform.position.x , transform.position.y - 0.5f), rotation);
             Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
             rigid.AddForce(Vector2.down * bulletspeed, ForceMode2D.Impulse);
                 
@@ -364,6 +389,7 @@ public class player : MonoBehaviour
         }
 
         //if(yspeed==0 && xspeed==0)
+        ts_cam();
         
 
 

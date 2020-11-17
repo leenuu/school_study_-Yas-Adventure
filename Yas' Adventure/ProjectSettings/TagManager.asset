@@ -13,6 +13,8 @@ TagManager:
   - ex
   - gost
   - wall
+  - cam1
+  - pos
   layers:
   - Default
   - TransparentFX
